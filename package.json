@@ -6,7 +6,7 @@
   "homepage": "https://mdivani].github.io/ice-cream/",
   "license": "MIT",
   "scripts": {
-    "predeploy": "yarn run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "serve": "live-server public/",
     "build": "webpack",
