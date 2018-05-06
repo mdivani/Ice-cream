@@ -1,0 +1,15 @@
+.image-container {
+    width: 20rem;
+    height: 30rem;
+    position: relative;
+    &__img {
+        display: block;
+        width: 20rem;
+        height: 30rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all .5s ease-out;
+    }
+  }
+  

@@ -1,0 +1,29 @@
+.txt--title {
+  color: $mainColor;
+  display: inline-block;
+  font-family: 'Pacifico', cursive;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.txt--flavor {
+  color: #444;
+  display: inline-block;
+  cursor: pointer;
+  margin-top: 0;
+  font-weight: 600;
+  text-align: center;
+  text-transform: capitalize;
+  padding: .5rem;
+  &-sub {
+    display: block;
+    width: 100%;
+    margin: 2px auto;
+  } 
+}
+
+.txt--selected {
+  border-radius: 2px;
+  background-color: $mainColor;
+  color: white;
+}

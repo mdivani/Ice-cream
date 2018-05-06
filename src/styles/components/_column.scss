@@ -1,0 +1,22 @@
+.col--flavor {
+    width: 35%;
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    flex-direction: column;
+    padding: $xs-size;
+    text-align: center;
+    @media (max-width: 450px) {
+        text-align: left;
+        width: 35%;
+        justify-content: space-between;
+    }
+}
+
+.col--user {
+    width: 40%;
+    margin: 0;
+    margin-bottom: 0;
+    text-align: center;
+    padding: $xs-size;
+}

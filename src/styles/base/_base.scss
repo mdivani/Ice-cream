@@ -1,0 +1,26 @@
+html {
+  outline: none;
+  font-size: 62.5%;
+  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+}
+
+body {
+  background-color: $backOff;
+  background-image: url(http://mariannesicecream.com/wp-content/uploads/2014/04/Mariannes-top-banner-small.png);
+  background-repeat: repeat-x;
+  font-family: arial, sans-serif;
+  font-size: $m-size;
+  box-sizing: border-box;
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}

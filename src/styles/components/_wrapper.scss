@@ -1,0 +1,16 @@
+.wrapper--ice-cream {
+    display: flex;
+    margin-top: 5rem;
+    justify-content: center;
+    @media (max-width: 450px) {
+        margin-top: 5rem;
+    }
+}
+
+.wrapper--flavors {
+    margin-top: 2rem;
+    width: 100%;
+    @media (max-width: 450px) {
+        margin-top: 5rem;
+    }
+}
