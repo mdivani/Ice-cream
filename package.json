@@ -1,10 +1,13 @@
 {
-  "name": "boilerplate",
+  "name": "ice-cream",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Andrew Mead",
+  "author": "Giorgi Mdivani",
+  "homepage": "https://mdivani].github.io/ice-cream/",
   "license": "MIT",
   "scripts": {
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "serve": "live-server public/",
     "build": "webpack",
     "dev-server": "webpack-dev-server"
@@ -17,6 +20,7 @@
     "babel-preset-env": "1.5.2",
     "babel-preset-react": "6.24.1",
     "css-loader": "0.28.4",
+    "gh-pages": "^1.1.0",
     "live-server": "^1.2.0",
     "node-sass": "4.5.3",
     "normalize.css": "7.0.0",
