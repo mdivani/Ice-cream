@@ -2,6 +2,7 @@
   color: $mainColor;
   display: inline-block;
   font-family: 'Pacifico', cursive;
+  font-size: 22px;
   text-align: center;
   text-transform: capitalize;
 }
@@ -19,7 +20,10 @@
     display: block;
     width: 100%;
     margin: 2px auto;
-  } 
+  }
+  &-credits {
+    margin-bottom: 0;
+  }
 }
 
 .txt--selected {

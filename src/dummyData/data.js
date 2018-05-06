@@ -61,23 +61,23 @@ export const userData = {
     flavors: [
             {
             flavor: 'vanilla bean',
-            selected: 1
+            selected: 0
         },
         {
             flavor: 'bittersweet',
-            selected: 2
+            selected: 0
         },
         {
             flavor: 'old time vanilla',
-            selected: 1
+            selected: 0
         },
         {
             flavor: 'black walnut',
-            selected: 1
+            selected: 0
         },
         {
             flavor: 'coffe almond fludge',
-            selected: 1
+            selected: 0
         }
     ]
 }

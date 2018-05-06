@@ -1,6 +1,7 @@
 import React from 'react';
 import IceCream from './IceCream';
 import ContentPage from './ContentPage';
+import UserInfo from './UserInfo';
 import { flavors} from '../dummyData/data';
 import { userData } from '../dummyData/data';
 
@@ -93,9 +94,18 @@ class HomePage extends React.Component {
     render() {
         return  (
             <div className='container'>
+            <header className='container__header'>
+             <nav role='navigation'>
+                <div className='wrapper--nav'>
                 <IceCream 
                     style={this.state.style}
                     />
+                <UserInfo 
+                    totalSelected={this.state.totalSelected}
+                    credits={this.state.credits} />
+                </div>
+             </nav>
+            </header>
                 <ContentPage 
                     selectedFlavors={this.state.selectedFlavors}
                     handleFlavorSelect={this.handleFlavorSelect}

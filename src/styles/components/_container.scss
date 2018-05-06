@@ -2,4 +2,9 @@
     margin: auto;
     max-width: 50rem;
     padding: 2px;
+    &__header {
+        display: flex;
+        width: 100%;
+        position: relative;
+    }
 }
