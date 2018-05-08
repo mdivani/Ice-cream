@@ -59,23 +59,28 @@ export const flavors = [
 export const userData = {
     credits: 3,
     flavors: [
-            {
+        {
+            id: 'asdasdau34242',
             flavor: 'vanilla bean',
             selected: 0
         },
         {
+            id: '89hhdjahsjdhja',
             flavor: 'bittersweet',
             selected: 0
         },
         {
+            id: 'hshday77673hdha',
             flavor: 'old time vanilla',
             selected: 0
         },
         {
+            id: '8huhbshds7y7y7',
             flavor: 'black walnut',
             selected: 0
         },
         {
+            id: 'bhsdhag87897988',
             flavor: 'coffe almond fludge',
             selected: 0
         }

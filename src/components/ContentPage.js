@@ -5,9 +5,12 @@ import Row from './Row';
 const ContentPage = (props) => (
     <div className='wrapper--flavors'>
         <Row 
-            handleFlavorSelect={props.handleFlavorSelect}
+            handleSelectedFlavor={props.handleSelectedFlavor}
+            handleNewFlavor={props.handleNewFlavor}
             flavors={props.flavors} 
-            selectedFlavors={props.selectedFlavors}/>
+            selectedFlavors={props.selectedFlavors}
+            newFlavors={props.newFlavors}
+            />
         <div className='row'>
             <button className='btn margin-vert-medium pos-right'>Save</button>
         </div>

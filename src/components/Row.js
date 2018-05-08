@@ -13,16 +13,29 @@ const Row = (props) => (
                     const selectedFlavor = props.selectedFlavors.filter((selectedFlavor) => {
                         return selectedFlavor.flavor === flavor;
                     })[0];
+                    const newFlavor = props.newFlavors.filter((newFlavor) => {
+                        return newFlavor.flavor === flavor;
+                    })[0];
 
-                    const selected = selectedFlavor && selectedFlavor.selected || 0;
-                    const isSelected = selectedFlavor ? 'txt--selected' : '';
-                    return <p 
+                    const isSelected = !!selectedFlavor;
+                    const isNew = !!newFlavor;
+                    const selected = isSelected ? selectedFlavor.selected || 0 :
+                     isNew ? newFlavor.selected || 0 : 0;
+                    const highlight = isNew ? 'txt--selected' : '';
+                    return isSelected ? <p 
                             key={flavor} 
-                            className={`txt--flavor ${isSelected}`}
-                            onClick={() => props.handleFlavorSelect({flavor, selected})}
+                            className={`txt--flavor txt--selected`}
+                            onClick={() => props.handleSelectedFlavor({flavor, selected, isSelected})}
                             >{flavor} <Checked 
                                         selected={selected} 
-                                         /></p>
+                                         /></p> : <p 
+                                         key={flavor} 
+                                         className={`txt--flavor ${highlight}`}
+                                         onClick={() => props.handleNewFlavor({flavor, selected, isNew})}
+                                         >{flavor} <Checked 
+                                                     selected={selected} 
+                                                      /></p>
+
                     })
                 }
             </div>
