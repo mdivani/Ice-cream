@@ -4,6 +4,7 @@ import Row from './Row';
 
 const ContentPage = (props) => (
     <div className='wrapper--flavors'>
+        <form onSubmit={props.handleSubmit}>
         <Row 
             handleSelectedFlavor={props.handleSelectedFlavor}
             handleNewFlavor={props.handleNewFlavor}
@@ -12,8 +13,11 @@ const ContentPage = (props) => (
             newFlavors={props.newFlavors}
             />
         <div className='row'>
-            <button className='btn margin-vert-medium pos-right'>Save</button>
+            <button 
+                className='btn margin-vert-medium pos-right'>Save
+            </button>
         </div>
+        </form>
     </div>
 );
 

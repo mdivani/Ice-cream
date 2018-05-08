@@ -52,6 +52,22 @@ class HomePage extends React.Component {
 
     handleSelectedFlavor = (flavor) => {
         if(this.state.credits > 0 && flavor.selected < 3) {
+            if(flavor.selected === 0) {
+                flavor.selected = flavor.selected + 1;
+                this.setState((prevState) => ({
+                    newFlavors: [flavor, ...prevState.newFlavors]
+                }));
+            }
+            else {
+                this.setState((prevState) => ({
+                    newFlavors: prevState.newFlavors.map((newFlavor) => {
+                        if(newFlavor.flavor === flavor.flavor) {
+                            newFlavor.selected++;
+                        }
+                        return newFlavor;
+                    })
+                }));
+            }
             this.setState((prevState) => {
                 return {
                     selectedFlavors: prevState.selectedFlavors.map((selectedFlavor) => {
@@ -123,6 +139,17 @@ class HomePage extends React.Component {
         this.setState(() => ({ style }))
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const Flavors = this.state.newFlavors.map((option) => {
+            return {
+                flavor: option.flavor,
+                selected: option.selected
+            }
+        });
+        console.log(Flavors);
+    }
+
     render() {
         return  (
             <div className='container'>
@@ -143,6 +170,7 @@ class HomePage extends React.Component {
                     selectedFlavors={this.state.selectedFlavors}
                     handleSelectedFlavor={this.handleSelectedFlavor}
                     handleNewFlavor={this.handleNewFlavor}
+                    handleSubmit={this.handleSubmit}
                     totalSelected={this.state.totalSelected}
                     credits={this.state.credits}
                     flavors={this.state.flavors}/>
