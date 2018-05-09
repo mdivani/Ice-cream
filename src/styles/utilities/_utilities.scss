@@ -3,7 +3,29 @@
     margin-left: auto;
 }
 
+.pos-left {
+    margin-right: auto;
+    margin-left: $xs-size;
+}
+
 .margin-vert-medium {
     margin-top: $s-size;
     margin-bottom: $xs-size;
+}
+
+
+.top-margin-medium {
+    margin-top: $m-size;
+}
+
+.top-margin-large {
+    margin-top: $l-size;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.no-border {
+    border: none;
 }

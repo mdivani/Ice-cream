@@ -2,6 +2,7 @@ import React from 'react';
 import IceCream from './IceCream';
 import ContentPage from './ContentPage';
 import UserInfo from './UserInfo';
+import WinwheelPage from './WinwheelPage';
 import { flavors} from '../dummyData/data';
 import { userData } from '../dummyData/data';
 
