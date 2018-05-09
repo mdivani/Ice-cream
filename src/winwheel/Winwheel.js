@@ -756,13 +756,13 @@ Winwheel.prototype.drawSegmentText = function()
         var fontSetting;
 
         // Loop though all the segments.
-        for (x = 1; x <= this.numSegments; x ++)
+        for (var x = 1; x <= this.numSegments; x ++)
         {
             // Save the context so it is certain that each segment text option will not affect the other.
             this.ctx.save();
 
             // Get the segment object as we need it to read options from.
-            seg = this.segments[x];
+            var seg = this.segments[x];
 
             // Check is text as no point trying to draw if there is no text to render.
             if (seg.text)
@@ -812,7 +812,7 @@ Winwheel.prototype.drawSegmentText = function()
                     lineOffset = 0;
                 }
 
-                for(i = 0; i < lines.length; i ++)
+                for(var i = 0; i < lines.length; i ++)
                 {
                     // ---------------------------------
                     // If direction is reversed then do things differently than if normal (which is the default - see further down)
@@ -1315,23 +1315,23 @@ Winwheel.prototype.drawSegmentText = function()
                                 // Work out how much angle the text rendering loop below needs to rotate by for each character to render them next to each other.
                                 // I have discovered that 4 * the font size / 10 at 100px radius is the correct spacing for between the characters
                                 // using a monospace font, non monospace may look a little odd as in there will appear to be extra spaces between chars.
-                                anglePerChar = (4 * (fontSize / 10));
+                                var anglePerChar = (4 * (fontSize / 10));
 
                                 // Work out what percentage the radius the text will be drawn at is of 100px.
-                                radiusPercent = (100 / radius);
+                                var radiusPercent = (100 / radius);
 
                                 // Then use this to scale up or down the anglePerChar value.
                                 // When the radius is less than 100px we need more angle between the letters, when radius is greater (so the text is further
                                 // away from the center of the wheel) the angle needs to be less otherwise the characters will appear further apart.
-                                anglePerChar = (anglePerChar * radiusPercent);
+                                var anglePerChar = (anglePerChar * radiusPercent);
 
                                 // Next we want the text to be drawn in the middle of the segment, without this it would start at the beginning of the segment.
                                 // To do this we need to work out how much arc the text will take up in total then subtract half of this from the center
                                 // of the segment so that it sits centred.
-                                totalArc = (anglePerChar * lines[i].length);
+                                var totalArc = (anglePerChar * lines[i].length);
 
                                 // Now set initial draw angle to half way between the start and end of the segment.
-                                drawAngle = seg.startAngle + (((seg.endAngle - seg.startAngle) / 2) - (totalArc / 2));
+                                var drawAngle = seg.startAngle + (((seg.endAngle - seg.startAngle) / 2) - (totalArc / 2));
                             }
                             else
                             {
@@ -1353,7 +1353,7 @@ Winwheel.prototype.drawSegmentText = function()
                             {
                                 this.ctx.save();
 
-                                character = lines[i].charAt(c);
+                                var character = lines[i].charAt(c);
 
                                 // Rotate the wheel to the draw angle as we need to add the character at this location.
                                 this.ctx.translate(this.centerX, this.centerY);

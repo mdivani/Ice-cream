@@ -20,3 +20,20 @@
     text-align: center;
     padding: $xs-size;
 }
+
+.col-wheel {
+    width: 100%;
+    &--1 {
+        width: 100%;
+        padding: $xs-size;
+        @media screen and (orientation:landscape) {
+            max-width: 5rem;
+         }
+    }
+    &--2 {
+        width: 100%;
+        @media screen and (orientation:landscape) {
+            max-width: 30rem;
+         }
+    }
+}

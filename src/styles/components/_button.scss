@@ -11,3 +11,12 @@
         box-shadow: 0 2px 2px rgba(0,0,0, .15);
     }
 }
+
+.btn-spin {
+    border: none;
+    background-color: $btnColor-secondary;
+    color: wheat;
+    box-shadow: 0 2px 4px rgba(0,0,0, .15);
+    padding: $s-size;
+    width: 10rem;
+}

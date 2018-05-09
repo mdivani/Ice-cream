@@ -1,6 +1,7 @@
 import React from 'react';
 import Winwheel from '../winwheel/Winwheel';
-import calculatePrize, { prizes } from '../dummyData/winwheel';
+import { prizes, randomPrize, fetchImage } from '../dummyData/winwheel';
+import LoadingPage from './LoadingPage';
 
 export default class WinwheelPage extends React.Component {
     constructor(props) {
@@ -10,49 +11,16 @@ export default class WinwheelPage extends React.Component {
             stopAt: 0,
             arguments: 4,
             wheel: null,
-            wheelImage: null
+            wheelImage: null,
+            canvasWidth: 0,
+            isLoaded: false,
+            isImageLoaded: false
         }
     }
 
     componentDidMount() {
-        const wheelImage = new Image();
-        const setPrize = calculatePrize();
-        const segments = prizes.map((prize) => {
-            return {
-                text: prize.name
-            }
-        });
-        wheelImage.onload = this.handleImageLoad;
-        const wheel = new Winwheel({
-            'canvasId': this.refs.canvas.id,
-            'drawMode': 'image',
-            'imageOverlay' : true,
-            'numSegments'  : this.state.arguments, 
-            'outerRadius' : 110,
-            'centerX':149,
-            'centerY': 155,
-            'textOrientation': 'curved',
-            'textAligment' : 'outer',
-            'textFontFamily'  : 'Courier', 
-            'textFontSize'    : 15,
-            'segments': [
-                ...segments
-            ],
-            'animation' :                 
-            {
-                'type'     : 'spinToStop',  
-                'duration' : 5, 
-                'spins'    : 8,
-                'callbackFinished' : this.handleAlertPrize          
-            }
-        });
-        this.setState(() => ({
-                prize: setPrize.prize,
-                stopAt: setPrize.stopAt,
-                wheel,
-                wheelImage
-            }));
-        wheelImage.src = 'http://res.cloudinary.com/dviy2q8nb/image/upload/c_scale,w_220/v1525845455/clipart_wheel_ugmvfv.png';
+        //set image width to window size 90%
+        this.setCanvasWidth();
     }
 
     handleImageLoad = () => {
@@ -66,6 +34,71 @@ export default class WinwheelPage extends React.Component {
        });   
     }
 
+    setCanvasWidth = () => {
+        let canvasWidth = (
+            window.screen.width < window.screen.height ? window.screen.width : window.screen.height
+        ) * .9;
+        canvasWidth = canvasWidth > 350 ? 350 : canvasWidth;
+        this.setState(() => ({
+            canvasWidth
+        }), () => {
+            //simulates random prize calculation on server returns response after 1.5s
+            randomPrize().then((response) => {
+                this.setState(() => ({ isLoaded: true}));
+                this.createWheel(response);
+            });
+        });
+    }
+
+    createWheel = (prize) => {
+
+        const wheelImage = new Image();
+        wheelImage.onload = this.handleImageLoad;
+
+        //get prizes from server
+        const setPrize = prize;
+        const segments = prizes.map((prize) => {
+            return {
+                'text': prize.name
+            }
+        });
+
+        //wheel constructor
+        const wheel = new Winwheel({
+            'canvasId': this.refs.canvas.id,
+            'drawMode': 'image',
+            'imageOverlay' : true,
+            'numSegments'  : this.state.arguments, 
+            'outerRadius' : 137,
+            'drawText': true, 
+            'textFontFamily': 'arial',
+            'textAlignment': 'outer',
+            'textOrientation': 'curved',
+            'animation' :                 
+            {
+                'type'     : 'spinToStop',  
+                'duration' : 5, 
+                'spins'    : 8,
+                'callbackFinished' : this.handleAlertPrize          
+            }
+        });
+        this.setState(() => ({
+                prize: setPrize.prize,
+                stopAt: setPrize.stopAt,
+                wheel,
+                wheelImage
+            }), () => {
+                //check that prize is set correctly before spin
+                console.log('prize to win set before spin', this.state.prize.name);
+                //simulates image load from server, receives response after .5s
+                fetchImage().then((Response) => {
+                    wheelImage.src = Response;
+                    this.setState(() => ({isImageLoaded: true}));
+                });
+            });
+    }
+
+    //start spinning will on button click
     handleWheelSpin = () => {
         this.setState((prevState) => {
             prevState.wheel.animation.stopAngle = this.state.stopAt;
@@ -77,25 +110,43 @@ export default class WinwheelPage extends React.Component {
         })
     }
 
+    //display prize in alert window
     handleAlertPrize = () => {
-        alert(this.state.prize.name)
+        alert('You won ' + this.state.prize.name)
     }
 
     render() {
         return (
-            <div className='container container--img'>
-            <div className='row no-border top-margin-large'>
-                <h2 className='txt--title center-text'>Win Prize!</h2>
-                <div className='image-container--canvas'>
-                    <canvas id='my-canvas' ref='canvas' width='300' height='300'></canvas>
+            this.state.isLoaded ?
+            <div className='container'>
+                <div className='row--wheel no-border top-margin-large'>
+                    <div className='col-wheel--1'>
+                        <button 
+                            disabled={!this.state.isImageLoaded}
+                            onClick={this.handleWheelSpin}
+                            className='btn-spin pos-left'>Spin
+                        </button>
+                    </div>
+                    <div className='col-wheel--2'>
+                        <div 
+                        className={this.state.isImageLoaded && 'image-container--canvas'}>
+                            <canvas
+                                className='image-container--canvas__canvas'
+                                height={this.state.canvasWidth}
+                                width={this.state.canvasWidth}
+                                id='my-canvas' 
+                                ref='canvas'>
+                                    <img 
+                                     width='10'
+                                     height='10'
+                                     className='image-container--canvas__pointer'
+                                     src='/images/basic_pointer.png' />
+                            </canvas>
+                        </div>
+                    </div>
                 </div>
-                <div className='row no-border'>
-                    <button 
-                        onClick={this.handleWheelSpin}
-                        className='btn pos-right'>Spin</button>
-                </div>
-            </div>
-            </div>
+            </div> :
+            <LoadingPage />
         )
     }
 }
