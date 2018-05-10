@@ -69,7 +69,7 @@ export default class WinwheelPage extends React.Component {
             'drawMode': 'image',
             'imageOverlay' : true,
             'numSegments'  : this.state.arguments, 
-            'outerRadius' : 137,
+            'outerRadius' : 250,
             'drawText': true, 
             'textFontFamily': 'arial',
             'textAlignment': 'outer',
@@ -91,8 +91,8 @@ export default class WinwheelPage extends React.Component {
                 //check that prize is set correctly before spin
                 console.log('prize to win set before spin', this.state.prize.name);
                 //simulates image load from server, receives response after .5s
-                fetchImage().then((Response) => {
-                    wheelImage.src = Response;
+                fetchImage().then((response) => {
+                    wheelImage.src = response;
                     this.setState(() => ({isImageLoaded: true}));
                 });
             });
@@ -132,16 +132,16 @@ export default class WinwheelPage extends React.Component {
                         className={this.state.isImageLoaded && 'image-container--canvas'}>
                             <canvas
                                 className='image-container--canvas__canvas'
-                                height={this.state.canvasWidth}
-                                width={this.state.canvasWidth}
+                                height='502'
+                                width='502'
                                 id='my-canvas' 
                                 ref='canvas'>
-                                    <img 
-                                     width='10'
-                                     height='10'
-                                     className='image-container--canvas__pointer'
-                                     src='/images/basic_pointer.png' />
                             </canvas>
+                           { this.state.isImageLoaded &&
+                            <img 
+                            className='pointer'
+                            src='http://res.cloudinary.com/dviy2q8nb/image/upload/c_scale,w_50/v1525926082/basic_pointer_ekevai.png' 
+                            />}
                         </div>
                     </div>
                 </div>

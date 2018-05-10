@@ -20,6 +20,9 @@
 
 .top-margin-large {
     margin-top: $l-size;
+    @media screen and (orientation:landscape) {
+        margin-top: 2px;
+     }
 }
 
 .center-text {

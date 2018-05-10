@@ -51,7 +51,7 @@ const calculatePrize = () => {
 
 //returns image url
 const loadImage = () => {
-    return 'http://res.cloudinary.com/dviy2q8nb/image/upload/c_scale,w_280/v1525845455/clipart_wheel_ugmvfv.png';
+    return 'http://res.cloudinary.com/dviy2q8nb/image/upload/c_scale,w_500/v1525845455/clipart_wheel_ugmvfv.png';
 }
 
 export default calculatePrize;
